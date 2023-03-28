@@ -15,6 +15,10 @@ Design: Material UI
 
 ## How to start
 
-Start backend: run `npm run dev`. It will run on `http://127.0.0.1:5555/`
-
-Start frontend: `cd ui-web`, run `npm start`. It will run on `http://localhost:5500/`
+- Clone the project to your local machine: `git clone https://github.com/JurateSt/CatApi`
+- Go to the _CatApi_ directory and run `npm i`
+- Start backend server: run `npm run dev`. It will run on `http://127.0.0.1:5555/`
+- Go to the _CatApi/ui-web_ directory and run `npm i`
+- Start frontend (be sure to be in _ui-web_ directory): run `npm start`. </br>
+  It will run on `http://localhost:5500/`
+- Got to the CatApi page about breeds: `http://127.0.0.1:5500/breeds`
