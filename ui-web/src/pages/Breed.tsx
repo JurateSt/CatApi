@@ -30,6 +30,7 @@ export const Breed = () => {
 			const cat = (await api.get(`/breeds/${id}`)).data;
 			setCat(cat);
 		} catch (err) {
+			// TODO: error handling
 			console.error({ error: err });
 		}
 	};

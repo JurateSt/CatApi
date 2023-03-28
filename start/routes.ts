@@ -26,4 +26,10 @@ Route.group(() => {
 
 	// get cat breed by ID
 	Route.get('/breeds/:id', 'BreedsController.getById');
+
+	// No such api methods on api
+	// TODO: discuss
+	// Route.post('/breeds', 'BreedsController.create');
+	// Route.patch('/breeds', 'BreedsController.update');
+	// Route.delete('/breeds', 'BreedsController.delete');
 }).prefix('/api');

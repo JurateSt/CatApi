@@ -23,3 +23,9 @@ Design: Material UI
 - Start frontend (be sure to be in _ui-web_ directory): run `npm start`. </br>
   It will run on `http://localhost:5500/`
 - Got to the CatApi page about breeds: `http://127.0.0.1:5500/breeds`
+
+#### Points to discuss
+
+POST, DELETE methods on API
+
+Error handling
