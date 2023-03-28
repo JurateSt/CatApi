@@ -4,12 +4,13 @@ import api from '../api/axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // material ui
-import { Typography, TextField, TableCell } from '@mui/material';
+import { TextField, TableCell } from '@mui/material';
 // custom components
 import { TableBasic } from '../components/TableBasic';
 import { TableRowClick } from '../components/TableRowClick';
+import { Title } from '../components/Title';
 
-interface ICats {
+interface IBreed {
 	id: string;
 	name: string;
 	description: string;
@@ -17,22 +18,19 @@ interface ICats {
 }
 export const Breeds = () => {
 	const navigate = useNavigate();
-	const [breeds, setBreeds] = useState<ICats[]>([]);
+	const [breeds, setBreeds] = useState<IBreed[]>([]);
 
 	useEffect(() => {
 		getBreeds();
-		console.log('BREEDS', breeds);
 	}, []);
 
 	const getBreeds = async () => {
 		try {
 			const cats = (await api.get('/breeds')).data;
-			console.log('CATS', cats);
 			setBreeds(cats);
 		} catch (err) {
-			console.log('ERROR', err);
+			console.error({ error: err });
 		}
-		//setBreeds(cats);
 	};
 
 	const handleClick = (id: string) => {
@@ -42,28 +40,12 @@ export const Breeds = () => {
 	const handleSearch = async (e: any) => {
 		let search = e.target.value.toLowerCase();
 		const cats = (await api.get('/breeds', { params: { search } })).data;
-		console.log('SEARCH', cats);
 		setBreeds(cats);
-		// console.log('SEARCH', search.length);
-		// if (search.length === 0) {
-		// 	search = '';
-		// }
-		// //console.log('SEARCH', search, search.length);
-		// //const list = [...breeds];
-		// //console.log('LIST ORIN', list);
-
-		// const cats = breeds.filter((item) => item.name.toLowerCase().includes(search));
-		// //console.log('BRREEDS', breeds);
-		// setBreeds(cats);
-
-		// console.log('handleSearch', search);
 	};
 
 	return (
 		<>
-			<Typography variant="h1" align="center">
-				Cat Breeds
-			</Typography>
+			<Title title="Cat Breeds"></Title>
 			<TextField label="Search by cat name" type="search" onChange={handleSearch} />
 			<TableBasic head={['ID', 'Name', 'Description', 'Wikipedia']}>
 				{breeds?.map((item) => {

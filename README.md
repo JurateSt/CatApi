@@ -13,7 +13,7 @@ Node.js with AdonisJS framework
 Initial setup: create-react-app
 Design: Material UI
 
-## How to start
+## How to Start
 
 - Clone the project to your local machine: `git clone https://github.com/JurateSt/CatApi`
 - Go to the _CatApi_ directory and run `npm i`

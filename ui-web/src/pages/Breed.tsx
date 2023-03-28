@@ -1,9 +1,14 @@
+// api utils
 import api from '../api/axios';
+// react
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+// material ui
 import { Typography, Link, Card, CardContent } from '@mui/material';
+// custom components
+import { Title } from '../components/Title';
 
-interface ICat {
+interface IBreed {
 	id: string;
 	name: string;
 	description: string;
@@ -14,29 +19,45 @@ interface ICat {
 }
 export const Breed = () => {
 	const { id } = useParams();
-	const [cat, setCat] = useState<ICat>();
+	const [cat, setCat] = useState<IBreed>();
+
 	useEffect(() => {
 		getCatById();
 	}, []);
 
 	const getCatById = async () => {
-		const cat = (await api.get(`/breeds/${id}`)).data;
-		setCat(cat);
-		console.log('CAT', cat, id);
+		try {
+			const cat = (await api.get(`/breeds/${id}`)).data;
+			setCat(cat);
+		} catch (err) {
+			console.error({ error: err });
+		}
 	};
+
 	return (
 		<Card>
 			<CardContent>
-				<Typography variant="h2">More about {cat?.name}</Typography>
+				<Title title={`More about ${cat?.name}`}></Title>
 				<Typography variant="h5" component="div">
-					{cat?.description}, {cat?.wikipedia_url}, {cat?.origin},
+					About: {cat?.description}
 				</Typography>
-				<Link
-					target="_blank"
-					href={`https://cdn2.thecatapi.com/images/${cat?.reference_image_id}.jpg`}
-				>
-					View Image
-				</Link>
+				<Typography variant="h5" component="div">
+					More:
+					<Link target="_blank" href={`${cat?.wikipedia_url}`}>
+						Wiki
+					</Link>
+				</Typography>
+				<Typography variant="h5" component="div">
+					Origin: {cat?.origin}
+				</Typography>
+				<Typography variant="h5" component="div">
+					<Link
+						target="_blank"
+						href={`https://cdn2.thecatapi.com/images/${cat?.reference_image_id}.jpg`}
+					>
+						View Image
+					</Link>
+				</Typography>
 			</CardContent>
 		</Card>
 	);

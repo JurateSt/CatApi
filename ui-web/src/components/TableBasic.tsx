@@ -1,7 +1,7 @@
-import React, { ReactNode } from 'react';
-import { styled } from '@mui/system';
+// react
+import { ReactNode } from 'react';
+// material ui
 import {
-	TextField,
 	Paper,
 	TableContainer,
 	Table,
@@ -10,13 +10,6 @@ import {
 	TableRow,
 	TableCell,
 } from '@mui/material';
-
-const TableRowClick = styled(TableRow)(({ theme }) => ({
-	// '&:hover': {
-	// 	backgroundColor: 'blue !important',
-	// },
-	cursor: 'pointer',
-}));
 
 type tableProps = {
 	head: Array<String>;
